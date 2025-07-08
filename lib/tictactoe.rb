@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require_relative "tictactoe/board"
+
 # Class for a player
 # Variable for current score
 # Variable whether their symbol is a cross or nought
