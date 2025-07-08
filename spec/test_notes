@@ -1,0 +1,2 @@
+Test Board.update_board for throwing an Index error when field outside 1..9 is
+chose
