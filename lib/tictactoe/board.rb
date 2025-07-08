@@ -13,12 +13,17 @@ class Board
   end
 
   def free_field?(field)
-    check_field(field)
     field == values[field - 1]
   end
 
+  def valid_field?(field)
+    (1..9).include?(field)
+  end
+
   def update_board(field, token)
-    check_field(field)
+    err_msg = "Field #{field} cannot be played"
+    raise IOError, err_msg unless valid_field?(field) && free_field?(field)
+
     values[field - 1] = token
   end
 
@@ -33,12 +38,6 @@ class Board
   end
 
   private
-
-  def check_field(field)
-    # Shouldn't happen when played through Game but still good to check
-    idx_err = "Field #{field} outside of range 1-9"
-    raise(IndexError, idx_err) unless (1..9).include?(field)
-  end
 
   def won?(last_field)
     idx = last_field - 1
