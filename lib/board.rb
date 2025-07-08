@@ -48,9 +48,3 @@ class Board
     !!won
   end
 end
-
-board = Board.new
-[3, 6, 1, 4, 7].each do |i|
-  board.update_board(i + 1, "X")
-  puts board
-end
