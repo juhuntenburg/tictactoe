@@ -14,21 +14,20 @@ class Player
   end
 
   def move
-    puts "Player #{token}, enter the field you want to play: "
-    field = gets.chomp.to_i
-
-    loop do
-      if !board.free_field?(field)
-        puts "Field #{field} already played, enter a different field: "
-        field = gets.chomp.to_i
-      elsif !board.valid_field?(field)
-        puts "Field #{field} out of range 1..9, enter a different field: "
-        field = gets.chomp.to_i
-      else
-        break
-      end
-    end
-
+    print "Player #{token}, enter the field you want to play: "
+    field = ensure_good_move(gets.chomp.to_i)
     board.update_board(field, token)
+  end
+
+  def ensure_good_move(field)
+    until board.valid_field?(field) && board.free_field?(field)
+      if !board.valid_field?(field)
+        print "Field #{field} out of range 1..9, enter a different field: "
+      elsif !board.free_field?(field)
+        print "Field #{field} already played, enter a different field: "
+      end
+      field = gets.chomp.to_i
+    end
+    field
   end
 end
