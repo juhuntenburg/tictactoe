@@ -17,6 +17,7 @@ class Player
     print "Player #{token}, enter the field you want to play: "
     field = ensure_good_move(gets.chomp.to_i)
     board.update_board(field, token)
+    field
   end
 
   def ensure_good_move(field)
